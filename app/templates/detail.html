@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+   <body>
+      <form action = "/main" method = "POST">
+         <table border = 1>
+            {% for key, value in detail.items() %}
+            
+               <tr>
+                  <th> {{ key }} </th>
+                  <td> 
+                     {% if value == "" %}
+                        <p><input type = "text" name = {{key}} readonly = true /></p> 
+                     {% else %}
+                        <p><input type = "text" name = {{key}} readonly = true value = {{value}} /></p> 
+                     {% endif %}
+                  </td>
+               </tr>
+               
+            {% endfor %}
+          </table>
+         <p><input type = "submit" value = "CHECK" /></p>
+      </form>
+   </body>
+</html>

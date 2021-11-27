@@ -3,12 +3,27 @@
    <body>
 
       <form action = "/detail" method = "POST">
-         <p>Name <input type = "text" name = "Name" /></p>
-         <p>Student Number <input type = "text" name = "StudentNumber" /></p>
-         <p>Gender</p>
-            <label><input type="radio" name="Gender" value="Male"/>Male</label>
-            <label><input type="radio" name="Gender" value="Female"/>Female</label>
-         <p>Major <input type = "text" name = "Major" /></p>
+         {% for key, value in main.items() %}
+            {% if key == "Gender" %}
+               <p>Gender</p>
+               {% if value == "Male" %}
+                  <label><input type = "radio" name = "Gender" checked = "true" value = "Male" />Male</label>
+                  <label><input type = "radio" name = "Gender" value = "Female" />Female</label>
+               {% elif value == "Female" %}
+                  <label><input type = "radio" name = "Gender" value = "Male" />Male</label>
+                  <label><input type = "radio" name = "Gender" checked = "true" value = "Female" />Female</label>
+               {% else %}
+                  <label><input type = "radio" name = "Gender" value = "Male" />Male</label>
+                  <label><input type = "radio" name = "Gender" value = "Female" />Female</label>
+               {% endif %}
+
+            {% elif value == "" %}
+               <p>{{key}} <input type = "text" name = {{key}} /></p><tr>
+            {% else %}
+               <p>{{key}} <input type = "text" name = {{key}} value = {{value}} /></p><tr>
+            {% endif %}
+
+         {% endfor %}
          <p><input type = "submit" value = "CHECK" /></p>
       </form>
       

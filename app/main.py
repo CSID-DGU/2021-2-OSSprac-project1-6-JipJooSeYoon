@@ -4,7 +4,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def student():
-   return render_template('main.html')
+   main = dict()
+   main['Name'] = ""
+   main['StudentNumber'] = ""
+   main['Gender'] =""
+   main['Major'] = ""
+   return render_template('main.html', main = main)
 
 @app.route('/detail', methods = ['POST', 'GET'])
 def detail():
@@ -15,6 +20,16 @@ def detail():
       detail['Gender'] = request.form.get('Gender')
       detail['Major'] = request.form.get('Major')
       return render_template("detail.html",detail = detail)
+
+@app.route('/main', methods = ['POST', 'GET'])
+def back():
+   if request.method == 'POST':
+      main = dict()
+      main['Name'] = request.form.get('Name')
+      main['StudentNumber'] = request.form.get('StudentNumber')
+      main['Gender'] = request.form.get('Gender')
+      main['Major'] = request.form.get('Major')
+      return render_template('main.html', main = main)
 
 @app.route('/result', methods = ['POST', 'GET'])
 def result():
