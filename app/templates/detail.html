@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+   <body>
+
+      <table border = 1>
+         {% for key, value in result.items() %}
+         
+            <tr>
+               <th> {{ key }} </th>
+               <td> {{ value }} </td>
+            </tr>
+            
+         {% endfor %}
+      </table>
+
+      <table border = 0>
+        <tr>
+           <td> <p><input type = "button" value = "MODIFY" onclick = "history.go(-1)"/></p> </td>
+           <td> <p><input type = "button" value = "CALCULATE" onclick="location.href='calculation.html'"/></p> </td>
+        </tr>
+        
+      </table>
+
+   </body>
+</html>
