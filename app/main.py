@@ -9,6 +9,7 @@ def student():
 @app.route('/detail', methods = ['POST', 'GET'])
 def detail():
    if request.method == 'POST':
+      global detail
       detail = dict()
       detail['Name'] = request.form.get('Name')
       detail['StudentNumber'] = request.form.get('StudentNumber')
@@ -20,11 +21,24 @@ def detail():
 def result():
    if request.method == 'POST':
       result = dict()
-      result['Name'] = request.form.get('Name')
-      result['StudentNumber'] = request.form.get('StudentNumber')
-      result['Gender'] = request.form.get('Gender')
-      result['Major'] = request.form.get('Major')
+      # result['Name'] = request.form.get('Name')
+      # result['StudentNumber'] = request.form.get('StudentNumber')
+      # result['Gender'] = request.form.get('Gender')
+      # result['Major'] = request.form.get('Major')
+      result['Name'] = detail['Name']
+      result['StudentNumber'] = detail['StudentNumber']
+      result['Gender'] = detail['Gender']
+      result['Major'] = detail['Major']
+      college = request.form.get('College')
+      if(college == '불교대학'): total = 4000000
+      elif(college == '문과대학'): total = 4200000
+      else: total = 4500000
+      result['Tuition'] = format(int(total * (1 - int(request.form.get('Scholarship'))/100)), ',d')
       return render_template("result.html",result = result)
+
+@app.route('/calculate')
+def calculate():
+   return render_template('calculate.html')
 
 if __name__ == '__main__':
    app.run(host="0.0.0.0", debug=True, port=80)
