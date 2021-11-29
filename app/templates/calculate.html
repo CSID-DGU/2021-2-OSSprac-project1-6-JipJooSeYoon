@@ -3,6 +3,11 @@
    <body>
    
       <form action = "/result" method = "POST">
+         
+         {% for key, value in detail.items() %}
+                     <input type="hidden" id= {{ key }} name= {{ key }} value= {{ value }}>
+                  {% endfor %}
+
          <p>소속 단과대</p>
             <label><input type="radio" style="vertical-align: top;" name="College" value="불교대학"/>불교대학</label>
             <label><input type="radio" style="vertical-align: top;" name="College" value="문과대학"/>문과대학</label>

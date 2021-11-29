@@ -2,6 +2,8 @@
 <html>
    <body>
 
+     
+
       <table border = 1>
          {% for key, value in detail.items() %}
          
@@ -12,13 +14,22 @@
             
          {% endfor %}
       </table>
+      
 
       <table border = 0>
         <tr>
            <td> <p><input type = "button" value = "MODIFY" onclick = "history.go(-1)"/></p> </td>
-           <td> <p><input type = "button" value = "CALCULATE" onclick="location.href='calculate'"/></p> </td>
-        </tr>
-        
+           
+           <td>
+              <form action = "/calculate" method = "POST">
+                  {% for key, value in detail.items() %}
+                     <input type="hidden" id= {{ key }} name= {{ key }} value= {{ value }}>
+                  {% endfor %}
+         
+                  <p><input type = "submit" value = "CHECK" /></p>
+               </form>
+            </td>
+        </tr> 
       </table>
 
    </body>
