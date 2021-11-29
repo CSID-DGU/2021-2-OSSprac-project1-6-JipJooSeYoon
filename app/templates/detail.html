@@ -2,14 +2,12 @@
 <html>
    <body>
 
-     
-
       <table border = 1>
          {% for key, value in detail.items() %}
          
             <tr>
                <th> {{ key }} </th>
-               <td> {{ value }} </td>
+               <td> <label><input type="text" name={{value}} readonly/> </label> </td>
             </tr>
             
          {% endfor %}
