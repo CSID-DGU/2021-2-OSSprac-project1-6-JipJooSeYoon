@@ -9,7 +9,6 @@ def student():
 @app.route('/detail', methods = ['POST', 'GET'])
 def detail():
    if request.method == 'POST':
-      # global detail
       detail = dict()
       detail['Name'] = request.form.get('Name')
       detail['StudentNumber'] = request.form.get('StudentNumber')
@@ -25,14 +24,11 @@ def result():
       result['StudentNumber'] = request.form.get('StudentNumber')
       result['Gender'] = request.form.get('Gender')
       result['Major'] = request.form.get('Major')
-      # result['Name'] = detail['Name']
-      # result['StudentNumber'] = detail['StudentNumber']
-      # result['Gender'] = detail['Gender']
-      # result['Major'] = detail['Major']
       college = request.form.get('College')
-      if(college == '불교대학'): total = 4000000
-      elif(college == '문과대학'): total = 4200000
-      else: total = 4500000
+      if(college in ['불교대학', '문과대학', '법과대학', '사회과학대학', '경찰사법대학', '경영대학', '사범대학', '미래융합대학']): total = 6938000
+      elif(college in ['이과대학']): total = 8050000
+      elif(college in ['바이오시스템대학', '공과대학', '예술대학']): total = 9160000
+      elif(college in ['약학대학']): total = 11316000
       result['Tuition'] = format(int(total * (1 - int(request.form.get('Scholarship'))/100)), ',d')
       return render_template("result.html",result = result)
 
